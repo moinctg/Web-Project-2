@@ -7,6 +7,11 @@ class profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     
     image  = models.ImageField(default='default.jpg',upload_to='profile_pics',blank=True)
+    present_address = models.TextField(null=True,blank=True)
+    perment_address = models.TextField(null=True,blank=True)
+    bio = models.TextField(null=True,blank=True)
+    birthday = models.DateField(null=True,blank=True)
+    contact = models.TextField(max_length=13)
 
     def __str__(self):  
         return f'{self.user.username} profile'
@@ -21,13 +26,13 @@ class profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-class profile_update(models.Model):  # extara field adding update profile 
+"""class profile_update(models.Model):  # extara field adding update profile 
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     present_address = models.TextField()
     perment_address = models.TextField()
     bio = models.TextField()
     birthday = models.DateField()
-    contact = models.TextField(max_length=13)
+    contact = models.TextField(max_length=13)"""
 
     
