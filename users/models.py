@@ -8,11 +8,11 @@ class profile(models.Model):
     
     image  = models.ImageField(default='default.jpg',upload_to='profile_pics',blank=True)
 
-    def __str__(self):  # image sortig 
+    def __str__(self):  
         return f'{self.user.username} profile'
 
-    def save(self):
-        super().save()
+    def save(self,*args, **kwargs):  # image sortig 
+        super(profile, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 
@@ -27,7 +27,7 @@ class profile_update(models.Model):  # extara field adding update profile
     present_address = models.TextField()
     perment_address = models.TextField()
     bio = models.TextField()
-    birthday=models.DateField(auto_now=False, null=True, blank=True)
+    birthday = models.DateField()
     contact = models.TextField(max_length=13)
 
     
